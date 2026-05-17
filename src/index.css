@@ -1,0 +1,160 @@
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+:root {
+  --bg: #04060f;
+  --bg2: #080c1a;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface2: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.12);
+  --accent: #00e5b3;
+  --accent2: #6c4dff;
+  --accent3: #ff5e7d;
+  --text: #dde1ee;
+  --text2: rgba(221, 225, 238, 0.6);
+  --muted: #4a5268;
+  --glow-accent: 0 0 60px rgba(0, 229, 179, 0.18);
+  --glow-purple: 0 0 60px rgba(108, 77, 255, 0.15);
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'Outfit', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; cursor: none; }
+button { cursor: none; }
+ul { list-style: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(0,229,179,0.25); border-radius: 2px; }
+
+/* ---- KEYFRAMES ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 179, 0.6); }
+  50%       { box-shadow: 0 0 0 12px rgba(0, 229, 179, 0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes scrollLine {
+  0%   { transform: scaleY(1) translateY(0); opacity: 1; }
+  100% { transform: scaleY(0.3) translateY(20px); opacity: 0; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes glitch1 {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+  90%  { clip-path: inset(10% 0 60% 0); transform: translate(-3px, 1px); }
+  92%  { clip-path: inset(40% 0 30% 0); transform: translate(3px, -2px); }
+  94%  { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 0px); }
+  96%  { clip-path: inset(0 0 100% 0); }
+}
+@keyframes glitch2 {
+  0%, 88%, 100% { clip-path: inset(100% 0 0 0); transform: translate(0); }
+  91%  { clip-path: inset(60% 0 10% 0); transform: translate(3px, -1px); }
+  93%  { clip-path: inset(20% 0 55% 0); transform: translate(-3px, 2px); }
+  95%  { clip-path: inset(80% 0 5%  0); transform: translate(2px, 0px); }
+  97%  { clip-path: inset(100% 0 0 0); }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes counterOrbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(0,229,179,0.15); }
+  50%       { border-color: rgba(0,229,179,0.35); }
+}
+
+/* ---- MOBILE RESPONSIVE OVERRIDES ---- */
+@media (max-width: 767px) {
+  /* Section padding */
+  section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* About grid → single column */
+  #about {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+
+  /* Projects grid → single column */
+  #projects > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Education card → single column */
+  #education > div {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    padding: 28px 20px !important;
+  }
+
+  /* Skills grid — fewer columns */
+  .skills-grid-inner {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+    padding: 24px 20px !important;
+  }
+
+  /* Hide cursor on touch devices */
+  #cursor, #cursor-trail { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller screens — tighten up skills */
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+}
